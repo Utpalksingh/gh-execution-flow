@@ -5,5 +5,5 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-        - name: output the information
-          run: echo "This is the deploy job"
+      - name: output the information
+        run: echo "REUSABLE_WORKFLOW: This is the deploy job"
