@@ -6,8 +6,14 @@ on:
           required: false
           type: string
           default: dist-files
+    outputs:
+        deploy-info-result:
+          description: 'The result of the deploy step'
+          value: ${{ jobs.deploy.outputs.my-result }}
 jobs:
   deploy:
+    outputs:
+      my-result: ${{ steps.utpal-deploy-result.outputs.deploy-info-result }}
     runs-on: ubuntu-latest
     steps:
       - name: Get build artifacts
@@ -17,3 +23,6 @@ jobs:
       - name: output the information
         run: |
           echo "deploying the website"
+      - name: set deploy result
+        id: utpal-deploy-result
+        run: echo "::set-output name=deploy-info-result::success"

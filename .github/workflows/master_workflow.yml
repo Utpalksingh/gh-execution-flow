@@ -69,6 +69,14 @@ jobs:
   deploy:
     needs: build
     uses: ./.github/workflows/reusable.yml
+
+  show deploy output:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show deploy output
+        run: |
+          echo "deploy result is ${{ needs.deploy.outputs.deploy-info-result }}"
   report:
     needs: [lint, test, build, deploy]
     runs-on: ubuntu-latest
